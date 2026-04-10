@@ -1,0 +1,293 @@
+/* ============================================
+   LIQUID.CSS — Morphing Blobs & Liquid Effects
+   ============================================ */
+
+/* --- Hero Canvas Background --- */
+#liquid-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* --- Hero Blobs (CSS-animated, SVG-filtered) --- */
+.blob-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  filter: url(#hero-morph);
+  opacity: 0.55;
+  animation: morphFloat 14s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 600px; height: 600px;
+  top: -150px; right: -100px;
+  background: radial-gradient(ellipse at 30% 30%, #0ff4c6 0%, #38bdf8 40%, #7b2ff7 100%);
+  animation-duration: 16s;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 400px; height: 400px;
+  bottom: -100px; left: 10%;
+  background: radial-gradient(ellipse at 60% 40%, #7b2ff7 0%, #f64f59 60%, #f7c948 100%);
+  animation-duration: 12s;
+  animation-delay: -4s;
+}
+
+.blob-3 {
+  width: 280px; height: 280px;
+  top: 40%; right: 25%;
+  background: radial-gradient(ellipse at 40% 50%, #f64f59 0%, #7b2ff7 100%);
+  animation-duration: 10s;
+  animation-delay: -7s;
+  opacity: 0.3;
+}
+
+@keyframes morphFloat {
+  0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(0, 0) scale(1) rotate(0deg); }
+  14%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: translate(15px, -20px) scale(1.04) rotate(3deg); }
+  28%  { border-radius: 50% 60% 30% 60% / 30% 40% 70% 50%; transform: translate(-10px, 15px) scale(0.97) rotate(-2deg); }
+  42%  { border-radius: 70% 30% 60% 40% / 50% 70% 30% 50%; transform: translate(20px, 10px) scale(1.02) rotate(5deg); }
+  56%  { border-radius: 40% 60% 50% 40% / 60% 40% 50% 60%; transform: translate(-15px, -10px) scale(1.06) rotate(-3deg); }
+  70%  { border-radius: 60% 40% 40% 60% / 40% 60% 50% 40%; transform: translate(8px, 20px) scale(0.98) rotate(2deg); }
+  84%  { border-radius: 30% 70% 60% 30% / 70% 30% 60% 40%; transform: translate(-5px, -8px) scale(1.01) rotate(-1deg); }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+
+/* --- Liquid Cursor Blob --- */
+#cursor-blob {
+  position: fixed;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(123,47,247,0.12) 0%, rgba(15,244,198,0.04) 60%, transparent 80%);
+  filter: url(#liquid-blob);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+/* --- Goo Blobs on About Section --- */
+.goo-scene {
+  position: absolute;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 420px; height: 420px;
+  filter: url(#gooey);
+  pointer-events: none;
+}
+
+.goo-blob {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--g-hero);
+}
+
+.goo-blob-1 {
+  width: 200px; height: 200px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #7b2ff7 0%, #0ff4c6 100%);
+  animation: gooOrbit1 8s ease-in-out infinite;
+}
+
+.goo-blob-2 {
+  width: 130px; height: 130px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #0ff4c6 0%, #38bdf8 100%);
+  animation: gooOrbit2 8s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+.goo-blob-3 {
+  width: 110px; height: 110px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #f64f59 0%, #f7c948 100%);
+  animation: gooOrbit3 8s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+@keyframes gooOrbit1 {
+  0%, 100% { transform: translate(-50%, -50%); }
+  33%       { transform: translate(-50%, -50%) translate(80px, -60px); }
+  66%       { transform: translate(-50%, -50%) translate(-70px, -40px); }
+}
+
+@keyframes gooOrbit2 {
+  0%, 100% { transform: translate(-50%, -50%); }
+  33%       { transform: translate(-50%, -50%) translate(-90px, 40px); }
+  66%       { transform: translate(-50%, -50%) translate(60px, 70px); }
+}
+
+@keyframes gooOrbit3 {
+  0%, 100% { transform: translate(-50%, -50%); }
+  33%       { transform: translate(-50%, -50%) translate(50px, 80px); }
+  66%       { transform: translate(-50%, -50%) translate(-40px, -80px); }
+}
+
+/* --- Animated Gradient Orbs (Background decoration) --- */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orbDrift 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.orb-1 {
+  width: 500px; height: 500px;
+  background: rgba(123,47,247,0.12);
+  top: 10%; left: 60%;
+  animation-duration: 22s;
+}
+
+.orb-2 {
+  width: 350px; height: 350px;
+  background: rgba(15,244,198,0.08);
+  top: 60%; left: 5%;
+  animation-duration: 18s;
+  animation-delay: -8s;
+}
+
+.orb-3 {
+  width: 280px; height: 280px;
+  background: rgba(246,79,89,0.08);
+  top: 30%; left: 30%;
+  animation-duration: 25s;
+  animation-delay: -14s;
+}
+
+@keyframes orbDrift {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(40px, -60px); }
+  50%       { transform: translate(-30px, 40px); }
+  75%       { transform: translate(60px, 20px); }
+}
+
+/* --- Liquid Card Hover Ripple --- */
+.project-card::after {
+  content: '';
+  position: absolute;
+  width: 0; height: 0;
+  background: radial-gradient(circle, rgba(123,47,247,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s var(--ease-out), height 0.6s var(--ease-out), opacity 0.6s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-card.rippling::after {
+  width: 600px; height: 600px;
+  opacity: 1;
+}
+
+/* --- Skill Card Liquid Border --- */
+.skill-card .liquid-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: 20px;
+  opacity: 0;
+  background: conic-gradient(from var(--angle, 0deg), var(--c-teal), var(--c-violet), var(--c-coral), var(--c-teal));
+  z-index: -1;
+  transition: opacity 0.4s ease;
+  animation: rotateBorder 3s linear infinite paused;
+}
+
+.skill-card:hover .liquid-border {
+  opacity: 0.6;
+  animation-play-state: running;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotateBorder {
+  to { --angle: 360deg; }
+}
+
+/* --- Morphing SVG Path in Project Visual --- */
+.morph-svg {
+  width: 100%; height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+}
+
+/* --- Noise Texture Overlay --- */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* --- Loading screen --- */
+#loading {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--c-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loading.hidden { opacity: 0; visibility: hidden; }
+
+.load-text {
+  font-family: var(--f-mono);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.15em;
+}
+
+.load-bar {
+  width: 200px; height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.load-bar-fill {
+  height: 100%;
+  background: var(--g-hero);
+  border-radius: 2px;
+  width: 0%;
+  transition: width 0.05s linear;
+}
+
+.load-logo {
+  font-family: var(--f-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--g-hero);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 1.5s ease-in-out infinite;
+}
